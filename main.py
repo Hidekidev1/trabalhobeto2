@@ -1,9 +1,8 @@
-from voos.controllers import SistemaReserva
-from voos.views import VooView
-import random
+from voos.controllers import sistema_reserva
+from voos.views import mostrar_voos, mostrar_detalhes_voo, mostrar_tripulacao, mostrar_assentos_ocupados
 
 def main():
-    sistema = SistemaReserva()
+    sistema = sistema_reserva()
     
     while True:
         print("\nSistema de Reserva de Voos")
@@ -17,31 +16,40 @@ def main():
         
         if opcao == "1":
             voos = sistema.listar_voos()
-            VooView.mostrar_voos(voos)
+            mostrar_voos(voos)
         
         elif opcao == "2":
-            numero_voo = int(input("Digite o número do voo (3 dígitos): "))
-            voo = sistema.get_voo_por_numero(numero_voo)
-            if voo:
-                VooView.mostrar_detalhes_voo(voo)
-            else:
-                print("Voo não encontrado!")
+            try:
+                numero = int(input("Digite o número do voo (3 dígitos): "))
+                voo = sistema.get_voo(numero)
+                if voo:
+                    mostrar_detalhes_voo(voo)
+                else:
+                    print("Voo não encontrado!")
+            except ValueError:
+                print("Número inválido!")
         
         elif opcao == "3":
-            numero_voo = int(input("Digite o número do voo (3 dígitos): "))
-            tripulacao = sistema.get_tripulacao_voo(numero_voo)
-            if tripulacao:
-                VooView.mostrar_tripulacao(tripulacao)
-            else:
-                print("Voo não encontrado!")
+            try:
+                numero = int(input("Digite o número do voo (3 dígitos): "))
+                voo = sistema.get_voo(numero)
+                if voo:
+                    mostrar_tripulacao(voo.tripulacao)
+                else:
+                    print("Voo não encontrado!")
+            except ValueError:
+                print("Número inválido!")
         
         elif opcao == "4":
-            numero_voo = int(input("Digite o número do voo (3 dígitos): "))
-            voo = sistema.get_voo_por_numero(numero_voo)
-            if voo:
-                VooView.mostrar_assentos_ocupados(voo)
-            else:
-                print("Voo não encontrado!")
+            try:
+                numero = int(input("Digite o número do voo (3 dígitos): "))
+                voo = sistema.get_voo(numero)
+                if voo:
+                    mostrar_assentos_ocupados(voo)
+                else:
+                    print("Voo não encontrado!")
+            except ValueError:
+                print("Número inválido!")
         
         elif opcao == "5":
             print("Saindo do sistema...")
