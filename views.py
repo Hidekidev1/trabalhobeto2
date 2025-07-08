@@ -1,4 +1,5 @@
 import random
+from models import voo  
 
 def mostrar_voos(voos):
     print("\nLista de Voos Disponíveis:")

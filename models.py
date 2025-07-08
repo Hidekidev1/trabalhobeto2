@@ -40,6 +40,8 @@ class voo:
             'aeromocas': []
         }
     
+
+    
     def reservar_assento(self, assento, cliente):
         if assento not in self.assentos:
             raise ValueError("Assento inválido")

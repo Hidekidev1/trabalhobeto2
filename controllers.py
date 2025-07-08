@@ -1,5 +1,5 @@
 import random
-from .models import voo, cliente, tripulante
+from models import voo, cliente, tripulante  
 
 def gerar_clientes(n=100):
     nomes = ["João", "Maria", "Pedro", "Ana", "Carlos", "Lucia", "Marcos", "Julia", "Fernando", "Patricia"]
