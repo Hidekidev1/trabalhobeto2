@@ -47,7 +47,7 @@ class VooView:
             print("\nNenhum assento ocupado neste voo.")
             return
         
-        # Pegar uma amostra aleatória dos assentos ocupados
+
         sample_size = min(quantidade, len(assentos_ocupados))
         assentos_amostra = random.sample(list(assentos_ocupados.items()), sample_size)
         

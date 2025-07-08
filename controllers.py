@@ -1,5 +1,5 @@
 from .models import Voo, Cliente, Tripulante
-from .data import gerar_clientes, gerar_tripulantes
+from .data import gerar_clientes, gerar_tripulantes, criar_voos
 import random
 
 class SistemaReserva:
@@ -14,21 +14,20 @@ class SistemaReserva:
         self.voos = criar_voos()
     
     def popular_voos(self):
-        # Distribuir tripulantes pelos voos
         comandantes = [t for t in self.tripulantes if t.cargo == "COMANDANTE"]
         copilotos = [t for t in self.tripulantes if t.cargo == "COPILOTO"]
         comissarios = [t for t in self.tripulantes if t.cargo == "COMISSARIO"]
         aeromocas = [t for t in self.tripulantes if t.cargo == "AEROMOCA"]
         
         for voo in self.voos:
-            # Adicionar 1 comandante, 1 copiloto, 1 comissário e 2 aeromoças por voo
+            
             voo.adicionar_tripulante(random.choice(comandantes))
             voo.adicionar_tripulante(random.choice(copilotos))
             voo.adicionar_tripulante(random.choice(comissarios))
             for _ in range(2):
                 voo.adicionar_tripulante(random.choice(aeromocas))
             
-            # Reservar alguns assentos aleatoriamente
+    
             assentos_livres = list(voo.get_assentos_livres().keys())
             assentos_reservar = random.sample(assentos_livres, min(50, len(assentos_livres)))
             
