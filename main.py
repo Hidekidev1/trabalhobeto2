@@ -1,5 +1,16 @@
+import sys
+import os
+
+# Adiciona o diretório pai ao path do Python
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from voos.controllers import sistema_reserva
-from voos.views import mostrar_voos, mostrar_detalhes_voo, mostrar_tripulacao, mostrar_assentos_ocupados
+from voos.views import (
+    mostrar_voos,
+    mostrar_detalhes_voo,
+    mostrar_tripulacao,
+    mostrar_assentos_ocupados
+)
 
 def main():
     sistema = sistema_reserva()
